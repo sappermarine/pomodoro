@@ -1,7 +1,8 @@
 {
-  "name": "takeoff-cursor-section-2",
+  "name": "pomodoro",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sappermarine.github.io/pomodoro",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
