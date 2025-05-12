@@ -7,6 +7,16 @@ interface ImageCarouselProps {
   setCurrentImage: (index: number) => void;
 }
 
+interface CarouselButtonProps {
+  direction: "left" | "right";
+  onClick: () => void;
+}
+
+interface ImageIndicatorsProps {
+  images: string[];
+  currentImage: number;
+}
+
 export default function ImageCarousel({ images, currentImage, setCurrentImage }: ImageCarouselProps) {
   const nextImage = () => setCurrentImage((currentImage + 1) % images.length);
   const prevImage = () => setCurrentImage((currentImage - 1 + images.length) % images.length);
@@ -34,7 +44,7 @@ export default function ImageCarousel({ images, currentImage, setCurrentImage }:
   );
 }
 
-function CarouselButton({ direction, onClick }) {
+function CarouselButton({ direction, onClick }: CarouselButtonProps) {
   const isLeft = direction === "left";
   return (
     <Button
@@ -49,7 +59,7 @@ function CarouselButton({ direction, onClick }) {
   );
 }
 
-function ImageIndicators({ images, currentImage }) {
+function ImageIndicators({ images, currentImage }: ImageIndicatorsProps) {
   return (
     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
       {images.map((_, index) => (
