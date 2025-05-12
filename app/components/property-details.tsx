@@ -73,7 +73,12 @@ function PropertyAmenities() {
   );
 }
 
-function AmenityItem({ icon, text }) {
+interface AmenityItemProps {
+  icon: React.ReactNode;
+  text: string;
+}
+
+function AmenityItem({ icon, text }: AmenityItemProps) {
   return (
     <div className="flex items-center space-x-2">
       {icon}
