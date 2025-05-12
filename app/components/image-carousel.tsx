@@ -1,31 +1,35 @@
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function ImageCarousel({ images, currentImage, setCurrentImage }) {
-  const nextImage = () => setCurrentImage((prev) => (prev + 1) % images.length);
-  const prevImage = () => setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+interface ImageCarouselProps {
+  images: string[];
+  currentImage: number;
+  setCurrentImage: (index: number) => void;
+}
+
+export default function ImageCarousel({ images, currentImage, setCurrentImage }: ImageCarouselProps) {
+  const nextImage = () => setCurrentImage((currentImage + 1) % images.length);
+  const prevImage = () => setCurrentImage((currentImage - 1 + images.length) % images.length);
 
   return (
-    <div className="relative mb-6">
-      <div className="overflow-hidden rounded-lg aspect-video">
-        <img
-          src={images[currentImage]}
-          alt={`Property image ${currentImage + 1}`}
-          className="w-full h-full object-cover"
-        />
-      </div>
-      <CarouselButton
-        direction="left"
+    <div className="relative">
+      <img
+        src={images[currentImage]}
+        alt={`Image ${currentImage + 1}`}
+        className="w-full h-auto rounded-lg"
+      />
+      <button
         onClick={prevImage}
-      />
-      <CarouselButton
-        direction="right"
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full"
+      >
+        <ChevronLeft />
+      </button>
+      <button
         onClick={nextImage}
-      />
-      <ImageIndicators
-        images={images}
-        currentImage={currentImage}
-      />
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full"
+      >
+        <ChevronRight />
+      </button>
     </div>
   );
 }
